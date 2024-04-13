@@ -12,48 +12,48 @@ export function App() {
 
 
   const dispatch = useDispatch();
-  const usersContact  = useSelector(state => state.contacts.usersContacts);
+  const usersContact = useSelector(state => state.contacts.usersContacts);
   const filter = useSelector(state => state.filter.filter);
 
-
-
-
-
-  // Фільтр. зміна фільтрації
-  const onChangeFilter = (event) => {
-    setFilter(event.target.value);
-  };
 
   // Збереження у локальному сховищі
   useEffect(() => {
     window.localStorage.setItem("usersContact", JSON.stringify(usersContact));
   }, [usersContact]);
 
-  //Видалення контактів
-  const onDeleteContact = (contactId) => {
-    const action = {type: "DELETE_CONTACT",payload: contactId,}
-    dispatch(action);
-    // setusersContact((prevContact) =>
-    //   prevContact.filter((user) => user.id !== contactId)
-    // );
-  };
 
   //Додавання контакта
   const onAddContact = (values) => {
-    
+
     const newContact = {
       name: values.userName,
       number: values.userNumber,
       id: nanoid(),
     };
 
-    const action = {type: "ADD_CONTACT",payload: newContact,}
+    const action = { type: "ADD_CONTACT", payload: newContact, }
     dispatch(action);
   };
 
+  //Видалення контактів
+  const onDeleteContact = (contactId) => {
+    const action = { type: "DELETE_CONTACT", payload: contactId, }
+    dispatch(action);
+  };
+
+
+
+  // Фільтр. зміна фільтрації
+  const onChangeFilter = (event) => {
+    const action = { type: "SET_FILTER", payload: event.target.value, }
+    dispatch(action);
+  };
+
+
   const filteredContacts = usersContact ? usersContact.filter((contact) =>
-  contact.name.toLowerCase().includes(filter.toLowerCase())
-) : [];
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  ) : [];
+
 
 
 
