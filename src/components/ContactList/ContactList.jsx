@@ -1,11 +1,11 @@
 import Contact from "../Contact/Contact";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteContact } from "../../redux/contactsSlice";
 import css from "../ContactList/ContactList.module.css";
 
-const ContactList = ({ usersContact }) => {
-
+const ContactList = () => {
   const dispatch = useDispatch();
+  const usersContact = useSelector((state) => state.contacts.items); // Використовуємо useSelector для отримання списку контактів
 
   const onDeleteContact = (contactId) => {
     dispatch(deleteContact(contactId));

@@ -7,13 +7,14 @@ const SearchBox = () => {
   const dispatch = useDispatch();
 
   const onChangeFilter = (event) => {
+    console.log(event.target.value);
     dispatch(changeFilter(event.target.value));
   };
 
   return (
     <section>
       <h4>Find contacts by name</h4>
-      <input type="text" placeholder="Search..." onInput={onChangeFilter} />
+      <input type="text" placeholder="Search..." onChange={onChangeFilter} />
     </section>
   );
 };
