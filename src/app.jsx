@@ -6,8 +6,8 @@ import ContactForm from "./components/ContactForm/ContactForm.jsx";
 import SearchBox from "./components/SearchBox/SearchBox.jsx";
 import ContactList from "./components/ContactList/ContactList.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { addcontact, deleteconstact } from "./redux/contactsSlice";
-import { setFilter } from "./redux/filtersSlice";
+import { addcontact, deleteConstact } from "./redux/contactsSlice";
+import { changeFilter } from "./redux/filtersSlice";
 
 
 export function App() {
@@ -38,13 +38,13 @@ export function App() {
 
   //Видалення контактів
   const onDeleteContact = (contactId) => {
-    dispatch(deleteconstact(contactId));
+    dispatch(deleteConstact(contactId));
   };
 
 
   // Фільтр. зміна фільтрації
   const onChangeFilter = (event) => {
-    dispatch(setFilter(event.target.value));
+    dispatch(changeFilter (event.target.value));
   };
 
   const filteredContacts = usersContact ? usersContact.filter((contact) =>

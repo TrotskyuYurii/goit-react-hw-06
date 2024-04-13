@@ -16,14 +16,14 @@ const contactsSlice = createSlice({
     addcontact(state, action) {
       state.usersContacts.push(action.payload);
 },
-    deleteconstact(state, action) {
+    deleteConstact(state, action) {
       state.usersContacts = state.usersContacts.filter((contact) => contact.id !== action.payload);
 },
   },
 });
 
 // Генератори екшенів
-export const { addcontact, deleteconstact } = contactsSlice.actions;
+export const { addcontact, deleteConstact } = contactsSlice.actions;
 
 // Редюсер слайсу
 export const contactsReducer = contactsSlice.reducer;
