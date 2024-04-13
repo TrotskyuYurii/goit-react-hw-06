@@ -1,27 +1,29 @@
-// Оновлений Redux-редюсер
+import { createSlice } from "@reduxjs/toolkit";
+
 const INITIAL_STATE = {
     usersContacts: [],
     filter: "",
   };
   
-  export const contactsSlice = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
-      case "ADD_CONTACT":
-        return {
-          ...state,
-          usersContacts: [...state.usersContacts, action.payload],
-        };
-      case "DELETE_CONTACT":
-        return {
-          ...state,
-          usersContacts: state.usersContacts.filter((contact) => contact.id !== action.payload),
-        };
-      case "SET_FILTER":
-        return {
-          ...state,
-          filter: action.payload,
-        };
-      default:
-        return state;
-    }
-  };
+
+const contactsSlice = createSlice({
+  // Ім'я слайсу - формує префікс для генераторів екшенів
+  name: "contacts",
+  // Початковий стан редюсера слайсу
+  initialState: INITIAL_STATE,
+  // Об'єкт редюсерів
+  reducers: {
+    addcontact(state, action) {
+      state.usersContacts.push(action.payload);
+},
+    deleteconstact(state, action) {
+      state.usersContacts = state.usersContacts.filter((contact) => contact.id !== action.payload);
+},
+  },
+});
+
+// Генератори екшенів
+export const { addcontact, deleteconstact } = contactsSlice.actions;
+
+// Редюсер слайсу
+export const contactsReducer = contactsSlice.reducer;

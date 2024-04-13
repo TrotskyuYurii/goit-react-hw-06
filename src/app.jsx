@@ -1,4 +1,3 @@
-import { useEffect, useState } from "preact/hooks";
 import "./app.css";
 
 import { nanoid } from "nanoid";
@@ -7,6 +6,9 @@ import ContactForm from "./components/ContactForm/ContactForm.jsx";
 import SearchBox from "./components/SearchBox/SearchBox.jsx";
 import ContactList from "./components/ContactList/ContactList.jsx";
 import { useSelector, useDispatch } from "react-redux";
+import { addcontact, deleteconstact } from "./redux/contactsSlice";
+import { setFilter } from "./redux/filtersSlice";
+
 
 export function App() {
 
@@ -30,22 +32,19 @@ export function App() {
       number: values.userNumber,
       id: nanoid(),
     };
-    const action = { type: "ADD_CONTACT", payload: newContact, }
-    dispatch(action);
+    dispatch(addcontact(newContact));
   };
 
 
   //Видалення контактів
   const onDeleteContact = (contactId) => {
-    const action = { type: "DELETE_CONTACT", payload: contactId, }
-    dispatch(action);
+    dispatch(deleteconstact(contactId));
   };
 
 
   // Фільтр. зміна фільтрації
   const onChangeFilter = (event) => {
-    const action = { type: "SET_FILTER", payload: event.target.value, }
-    dispatch(action);
+    dispatch(setFilter(event.target.value));
   };
 
   const filteredContacts = usersContact ? usersContact.filter((contact) =>
