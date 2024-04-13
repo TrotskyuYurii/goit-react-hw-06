@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+
 import ContactForm from "./components/ContactForm/ContactForm.jsx";
 import SearchBox from "./components/SearchBox/SearchBox.jsx";
 import ContactList from "./components/ContactList/ContactList.jsx";
@@ -11,14 +11,7 @@ export function App() {
   const usersContacts = useSelector((state) => state.contacts.items);
   const filter = useSelector((state) => state.filters.name);
 
-  const onAddContact = (values) => {
-    const newContact = {
-      name: values.userName,
-      number: values.userNumber,
-      id: nanoid(),
-    };
-    dispatch(addContact(newContact));
-  };
+ 
 
   const onDeleteContact = (contactId) => {
     dispatch(deleteContact(contactId));
@@ -35,7 +28,7 @@ export function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm onAddContact={onAddContact} />
+      <ContactForm/>
       <SearchBox onChangeFilter={onChangeFilter} />
       <ContactList
         usersContact={filteredContacts}
