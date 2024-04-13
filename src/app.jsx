@@ -17,9 +17,7 @@ export function App() {
     dispatch(deleteContact(contactId));
   };
 
-  const onChangeFilter = (event) => {
-    dispatch(changeFilter(event.target.value));
-  };
+
 
   const filteredContacts = usersContacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -29,7 +27,7 @@ export function App() {
     <div>
       <h1>Phonebook</h1>
       <ContactForm/>
-      <SearchBox onChangeFilter={onChangeFilter} />
+      <SearchBox />
       <ContactList
         usersContact={filteredContacts}
         onDeleteContact={onDeleteContact}
