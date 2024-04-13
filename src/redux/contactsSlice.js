@@ -8,9 +8,14 @@ const INITIAL_STATE = {
 }
 
 export const contactsSlice = (state = INITIAL_STATE, action) => {
-    return state;
-    // switch (action.type) {
-    //     default:
-    //         return state;
-    // }
+
+    switch (action.type) {
+        case "ADD_CONTACT":
+            return {
+                ...state,
+                usersContacts: [...state.usersContacts, action.payload],
+            }
+        default:
+            return state;
+    }
 }
