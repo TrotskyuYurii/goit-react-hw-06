@@ -31,9 +31,11 @@ export function App() {
 
   //Видалення контактів
   const onDeleteContact = (contactId) => {
-    setusersContact((prevContact) =>
-      prevContact.filter((user) => user.id !== contactId)
-    );
+    const action = {type: "DELETE_CONTACT",payload: contactId,}
+    dispatch(action);
+    // setusersContact((prevContact) =>
+    //   prevContact.filter((user) => user.id !== contactId)
+    // );
   };
 
   //Додавання контакта

@@ -15,6 +15,11 @@ export const contactsSlice = (state = INITIAL_STATE, action) => {
                 ...state,
                 usersContacts: [...state.usersContacts, action.payload],
             }
+        case "DELETE_CONTACT":
+            return {
+                ...state,
+                usersContacts: state.usersContacts.filter(contact => contact.id !== action.payload),
+            }
         default:
             return state;
     }
