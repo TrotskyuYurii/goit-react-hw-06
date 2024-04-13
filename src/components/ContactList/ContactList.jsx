@@ -5,21 +5,27 @@ import css from "../ContactList/ContactList.module.css";
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const usersContact = useSelector((state) => state.contacts.items); // Використовуємо useSelector для отримання списку контактів
+  const usersContact = useSelector((state) => state.contacts.items);
+  const filter = useSelector((state) => state.filters.name.toLowerCase());
 
   const onDeleteContact = (contactId) => {
     dispatch(deleteContact(contactId));
   };
 
+  // Фільтруємо
+  const filteredContacts = usersContact.filter((contact) =>
+    contact.name.toLowerCase().includes(filter)
+  );
+
   return (
     <div>
       <ul className={css.ContactListUl}>
-        {usersContact.map((usersContactItem) => (
+        {filteredContacts.map((contact) => (
           <Contact
-            key={usersContactItem.id}
-            id={usersContactItem.id}
-            name={usersContactItem.name}
-            number={usersContactItem.number}
+            key={contact.id}
+            id={contact.id}
+            name={contact.name}
+            number={contact.number}
             onDeleteContact={onDeleteContact}
           />
         ))}
