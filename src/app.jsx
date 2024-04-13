@@ -6,25 +6,32 @@ import { nanoid } from "nanoid";
 import ContactForm from "./components/ContactForm/ContactForm.jsx";
 import SearchBox from "./components/SearchBox/SearchBox.jsx";
 import ContactList from "./components/ContactList/ContactList.jsx";
+import { useSelector } from "react-redux";
 
 export function App() {
-  // Первинна ініціалізація списку контактів
-  const usersContactInitial = [
-    { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-    { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-    { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-    { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-  ];
 
-  // Стан для збереження всіх контактів
-  const [usersContact, setusersContact] = useState(() => {
-    const dateFromStorage = localStorage.getItem("usersContact");
-    if (!dateFromStorage) {
-      return usersContactInitial;
-    } else {
-      return JSON.parse(dateFromStorage);
-    }
-  });
+  // // Первинна ініціалізація списку контактів
+  // const usersContactInitial = [
+  //   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
+  //   { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
+  //   { id: "id-3", name: "Eden Clements", number: "645-17-79" },
+  //   { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
+  // ];
+
+  // // Стан для збереження всіх контактів
+  // const [usersContact, setusersContact] = useState(() => {
+  //   const dateFromStorage = localStorage.getItem("usersContact");
+  //   if (!dateFromStorage) {
+  //     return usersContactInitial;
+  //   } else {
+  //     return JSON.parse(dateFromStorage);
+  //   }
+  // });
+
+
+  const usersContact  = useSelector((state) => {
+    console.log('state', state);
+    return state.contacts.usersContacts});
 
   // Фільтр. первинне значення
   const [filter, setFilter] = useState("");
@@ -57,9 +64,10 @@ export function App() {
     setusersContact((prevState) => [...prevState, newContact]);
   };
 
-  const filteredContacts = usersContact.filter((contact) =>
+  const filteredContacts = usersContact ? usersContact.filter((contact) =>
   contact.name.toLowerCase().includes(filter.toLowerCase())
-);
+) : [];
+
 
 
   return (

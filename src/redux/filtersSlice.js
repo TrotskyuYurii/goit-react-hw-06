@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    filterInitial: ''
+    filter: ''
 }
 
 export const filtersSlice = (state = INITIAL_STATE, action) => {
