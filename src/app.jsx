@@ -60,8 +60,7 @@ export function App() {
   const filteredContacts = usersContact.filter((contact) =>
   contact.name.toLowerCase().includes(filter.toLowerCase())
 );
-console.log('filter:',filter,'res:',filteredContacts);
-// setusersContact(filteredContacts);
+
 
   return (
     <div>
