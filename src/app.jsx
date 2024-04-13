@@ -1,58 +1,36 @@
-import "./app.css";
-
 import { nanoid } from "nanoid";
-
 import ContactForm from "./components/ContactForm/ContactForm.jsx";
 import SearchBox from "./components/SearchBox/SearchBox.jsx";
 import ContactList from "./components/ContactList/ContactList.jsx";
 import { useSelector, useDispatch } from "react-redux";
-import { addcontact, deleteConstact } from "./redux/contactsSlice";
+import { addContact, deleteContact } from "./redux/contactsSlice";
 import { changeFilter } from "./redux/filtersSlice";
 
-
 export function App() {
-
-
   const dispatch = useDispatch();
-  const usersContact = useSelector(state => state.contacts.usersContacts);
-  const filter = useSelector(state => state.filter.filter);
+  const usersContacts = useSelector((state) => state.contacts.items);
+  const filter = useSelector((state) => state.filters.name);
 
-
-  // // Збереження у локальному сховищі
-  // useEffect(() => {
-  //   window.localStorage.setItem("usersContact", JSON.stringify(usersContact));
-  // }, [usersContact]);
-
-
-  //Додавання контакта
   const onAddContact = (values) => {
-
     const newContact = {
       name: values.userName,
       number: values.userNumber,
       id: nanoid(),
     };
-    dispatch(addcontact(newContact));
+    dispatch(addContact(newContact));
   };
 
-
-  //Видалення контактів
   const onDeleteContact = (contactId) => {
-    dispatch(deleteConstact(contactId));
+    dispatch(deleteContact(contactId));
   };
 
-
-  // Фільтр. зміна фільтрації
   const onChangeFilter = (event) => {
-    dispatch(changeFilter (event.target.value));
+    dispatch(changeFilter(event.target.value));
   };
 
-  const filteredContacts = usersContact ? usersContact.filter((contact) =>
+  const filteredContacts = usersContacts.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
-  ) : [];
-
-
-
+  );
 
   return (
     <div>

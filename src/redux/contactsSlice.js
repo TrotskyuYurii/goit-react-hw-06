@@ -1,28 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const INITIAL_STATE = {
-    usersContacts: []
-  };
-  
+    items: []
+};
 
 const contactsSlice = createSlice({
-  // Ім'я слайсу - формує префікс для генераторів екшенів
-  name: "contacts",
-  // Початковий стан редюсера слайсу
-  initialState: INITIAL_STATE,
-  // Об'єкт редюсерів
-  reducers: {
-    addcontact(state, action) {
-      state.usersContacts.push(action.payload);
-},
-    deleteConstact(state, action) {
-      state.usersContacts = state.usersContacts.filter((contact) => contact.id !== action.payload);
-},
-  },
+    name: "contacts",
+    initialState: INITIAL_STATE,
+    reducers: {
+        addContact(state, action) {
+            state.items.push(action.payload);
+        },
+        deleteContact(state, action) {
+            state.items = state.items.filter((contact) => contact.id !== action.payload);
+        },
+    },
 });
 
-// Генератори екшенів
-export const { addcontact, deleteConstact } = contactsSlice.actions;
+export const { addContact, deleteContact } = contactsSlice.actions;
 
-// Редюсер слайсу
 export const contactsReducer = contactsSlice.reducer;
