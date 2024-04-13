@@ -16,10 +16,10 @@ export function App() {
   const filter = useSelector(state => state.filter.filter);
 
 
-  // Збереження у локальному сховищі
-  useEffect(() => {
-    window.localStorage.setItem("usersContact", JSON.stringify(usersContact));
-  }, [usersContact]);
+  // // Збереження у локальному сховищі
+  // useEffect(() => {
+  //   window.localStorage.setItem("usersContact", JSON.stringify(usersContact));
+  // }, [usersContact]);
 
 
   //Додавання контакта
@@ -30,10 +30,10 @@ export function App() {
       number: values.userNumber,
       id: nanoid(),
     };
-
     const action = { type: "ADD_CONTACT", payload: newContact, }
     dispatch(action);
   };
+
 
   //Видалення контактів
   const onDeleteContact = (contactId) => {
@@ -42,13 +42,11 @@ export function App() {
   };
 
 
-
   // Фільтр. зміна фільтрації
   const onChangeFilter = (event) => {
     const action = { type: "SET_FILTER", payload: event.target.value, }
     dispatch(action);
   };
-
 
   const filteredContacts = usersContact ? usersContact.filter((contact) =>
     contact.name.toLowerCase().includes(filter.toLowerCase())

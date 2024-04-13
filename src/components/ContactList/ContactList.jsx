@@ -2,6 +2,9 @@ import Contact from "../Contact/Contact";
 import css from "../ContactList/ContactList.module.css";
 
 const ContactList = ({ usersContact, onDeleteContact }) => {
+
+  console.log('usersContact', usersContact);
+
   return (
     <div>
       <ul className={css.ContactListUl}>
