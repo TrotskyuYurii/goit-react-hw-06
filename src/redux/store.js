@@ -26,7 +26,7 @@ const contactsPeristConfig = {
 
 export const store = configureStore({
   reducer: {
-    contacts: persistReducer(contactsPeristConfig, contactsReducer),
+    contacts: persistReducer(contactsPeristConfig, contactsReducer), //redux-persist - додаємо збережені дані в локальному сховищі
     filters: filtersReducer
   },
 
