@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//Первинне значення для слайса
 const INITIAL_STATE = {
     items: []
 };
 
+//створення слайса з значенням і методами
 const contactsSlice = createSlice({
     name: "contacts",
     initialState: INITIAL_STATE,
@@ -17,6 +19,5 @@ const contactsSlice = createSlice({
     },
 });
 
-export const { addContact, deleteContact } = contactsSlice.actions;
-
-export const contactsReducer = contactsSlice.reducer;
+export const { addContact, deleteContact } = contactsSlice.actions; // деструктуризація і імпортування методів з слайсу
+export const contactsReducer = contactsSlice.reducer; // імпортування самого слайсу

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { contactsReducer } from "./contactsSlice";
-import { filtersReducer } from "./filtersSlice";
+import { contactsReducer } from "./contactsSlice"; //Redux Toolkit - імпортуємо слайс контактів
+import { filtersReducer } from "./filtersSlice"; //Redux Toolkit - імпортуємо слайс фільтрів
 
 //persist - імопртуємо необхідні бібліотеки persist redux. З цим не розбирємось - просто копіюємо
 import {
@@ -24,6 +24,7 @@ const contactsPeristConfig = {
 };
 //persist
 
+//Redux Toolkit - єкспортуємо головне сховище store
 export const store = configureStore({
   reducer: {
     contacts: persistReducer(contactsPeristConfig, contactsReducer), //redux-persist - додаємо до головного сховища збережені дані в локальному сховищі
