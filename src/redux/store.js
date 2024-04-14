@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { contactsReducer } from "./contactsSlice";
 import { filtersReducer } from "./filtersSlice";
 
-//persist
+//persist - імопртуємо необхідні бібліотеки persist redux
 import {
   persistStore,
   persistReducer,
@@ -16,7 +16,7 @@ import {
 import storage from "redux-persist/lib/storage";
 //persist
 
-//persist
+//persist - вказуємо які редюсери нам потрібно зберегти в локальному сховищі
 const contactsPeristConfig = {
   key: "contactsitems",
   storage,
@@ -30,7 +30,7 @@ export const store = configureStore({
     filters: filtersReducer
   },
 
-  //persist
+  //persist - конфігурація middleware для redux-persist
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware({
     serializableCheck: {
@@ -41,6 +41,6 @@ export const store = configureStore({
 
 });
 
-//persist
+//persist - єкспортуємо store з redux-persist
 export const persistor = persistStore(store);
 //persist
